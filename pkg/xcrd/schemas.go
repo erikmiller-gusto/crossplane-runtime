@@ -30,6 +30,16 @@ const (
 	LabelKeyNamePrefixForComposed = "crossplane.io/composite"
 	LabelKeyClaimName             = "crossplane.io/claim-name"
 	LabelKeyClaimNamespace        = "crossplane.io/claim-namespace"
+
+	// LabelKeyShard partitions managed resources across provider instances for
+	// horizontal scaling (provider sharding). It is set on a Claim or XR and
+	// propagated to composed resources, alongside LabelKeyNamePrefixForComposed.
+	//
+	// This string MUST stay identical to LabelKeyShard in Crossplane core
+	// (internal/xcrd/schemas.go): the two repositories agree on the wire value
+	// rather than sharing a symbol, because crossplane-runtime cannot import
+	// core's internal packages.
+	LabelKeyShard = "crossplane.io/shard"
 )
 
 // CompositionRevisionRef should be propagated dynamically.
